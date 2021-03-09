@@ -25,14 +25,6 @@ public class HibernateUtil {
     
 	public static SessionFactory getSessionFactory() {
 		Map<String, String> settings = new HashMap<String,String>();
-		/*	settings.put(Environment.DRIVER, "oracle.jdbc.driver.OracleDriver");
-		settings.put(Environment.URL, "jdbc:oracle:thin:@10.10.27.66:1525:IMSP2");
-		settings.put(Environment.DIALECT, "org.hibernate.dialect.OracleDialect");
- 		settings.put(Environment.USER, "81800804");
-		settings.put(Environment.PASS, "IFRS2019!");
-		*/
-		
-//		logger.info("getSesson Factory no Arg");
 		return genSessionFactory(settings);
 	  }
 
