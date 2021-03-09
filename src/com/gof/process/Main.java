@@ -10,6 +10,7 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
+import java.util.stream.Collectors;
 
 //import org.apache.log4j.Level;
 import org.hibernate.Session;
@@ -18,6 +19,7 @@ import org.slf4j.LoggerFactory;
 
 import com.gof.enums.ERunArgument;
 import com.gof.util.HibernateUtil;
+import com.gof.util.ParamUtil;
 
 //import com.gof.entity.IrCurve;
 //import com.gof.enums.ERunArgument;
@@ -86,11 +88,10 @@ public class Main {
 			
 		session = HibernateUtil.getSessionFactory(properties).openSession();
 		logger.info("Session Info : {}", session.getProperties());
-//			
-//			paramGroup = properties.getOrDefault("paramGroup", "BASE").toString();
-//			
-//	//		Map<String, String> argumentMap = EsgMstDao.getEsgParam(paramGroup).stream().collect(Collectors.toMap(s->s.getParamKey(), s->s.getParamValue()));
-//			Map<String, String> argumentMap = ParamUtil.getParamList(paramGroup).stream().collect(Collectors.toMap(s->s.getParamKey(), s->s.getParamValue()));
+			
+		paramGroup = properties.getOrDefault("paramGroup", "BASE").toString();
+				
+		Map<String, String> argumentMap = ParamUtil.getParamList(paramGroup).stream().collect(Collectors.toMap(s->s.getParamKey(), s->s.getParamValue()));
 //			
 //	//		batchNum, dnsErrorTolerance, dnsVolAdjust, hwErrorTolerance, hw2ErrorTolerance, IrSceCurrency, outputDir 
 //			output 			  			= argumentMap.getOrDefault("outputDir", properties.get("outputDir").toString()) ;
