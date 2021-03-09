@@ -2,9 +2,7 @@ package com.gof.process;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.lang.System.Logger;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -12,11 +10,12 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadFactory;
-import java.util.stream.Collectors;
 
+
+//import org.apache.log4j.Level;
 import org.hibernate.Session;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.gof.enums.ERunArgument;
 
@@ -29,6 +28,7 @@ import com.gof.enums.ERunArgument;
 //import com.gof.util.ParamUtil;
 
 public class Main {
+	private final static Logger logger = LoggerFactory.getLogger(Main.class);
 	private static Map<ERunArgument, String> argMap = new HashMap<>();
 	private static String output;
 	private static int batchNum = 10;
@@ -60,32 +60,30 @@ public class Main {
 	private static Set<String> irSceCurrency = new HashSet<>();
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		int x = 4;
-		System.out.println("Hello World");
+		init(args);
 	}
 	
-	private static void init(String[] args) {
-			
-			for (String aa : args) {
-				for (ERunArgument bb : ERunArgument.values()) {
-					if (aa.split("=")[0].toLowerCase().contains(bb.name())) {
-						argMap.put(bb, aa.split("=")[1]);
-						break;
-					}
+	private static void init(String[] args) {	
+				
+		for (String aa : args) {
+			for (ERunArgument bb : ERunArgument.values()) {
+				if (aa.split("=")[0].toLowerCase().contains(bb.name())) {
+					argMap.put(bb, aa.split("=")[1]);
+					break;
 				}
 			}
-//			
-//			bssd = argMap.get(ERunArgument.time).replace("-", "").replace("/", "").substring(0, 6);
-//			Properties properties = new Properties();
-//			try {
-//				FileInputStream fis = new FileInputStream(argMap.get(ERunArgument.properties));
-//				properties.load(new BufferedInputStream(fis));
-//	
-//			} catch (Exception e) {
-//				logger.warn("Error in Properties Loading : {}", e);
-//			}
-//	
+		}
+			
+		bssd = argMap.get(ERunArgument.time).replace("-", "").replace("/", "").substring(0, 6);
+		Properties properties = new Properties();
+		try {
+			FileInputStream fis = new FileInputStream(argMap.get(ERunArgument.properties));
+			properties.load(new BufferedInputStream(fis));
+
+		} catch (Exception e) {
+			logger.warn("Error in Properties Loading : {}", e);
+		}
+			
 //			session = HibernateUtil.getSessionFactory(properties).openSession();
 //	//		Session From DB
 //	//		session = HibernateUtil.getSessionFactory().getCurrentSession();
