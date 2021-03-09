@@ -3,6 +3,7 @@ package com.gof.process;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -10,6 +11,8 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
 import java.util.stream.Collectors;
 
 //import org.apache.log4j.Level;
@@ -105,51 +108,47 @@ public class Main {
 		hw2ErrorTolerance = Double.parseDouble(argumentMap.getOrDefault("hw2ErrorTolerance", properties.getOrDefault("hw2ErrorTolerance", "0.0001").toString()));
 			
 		jobString 		  = properties.get("job").toString();
-//			
-//			for(Map.Entry<String, String> entry : argumentMap.entrySet()) {
-//				if(entry.getKey().contains("JOB")) {
-//					jobString = entry.getValue();
-//				}
-//			}
-//			//Add for stepwise run !!!! 20190402
-//			if(properties.containsKey("job_batch")) {
-//				jobString 			 = properties.get("job_batch").toString();
-//			}
-//			
-//			jobList 	 = Arrays.stream(jobString .split(",")).map(s -> s.trim()).collect(Collectors.toList());
-//			irSceCurrency= Arrays.stream(irSceCurrencyString.split(",")).map(s -> s.trim()).collect(Collectors.toSet());
-//			
-//			logger.info("Prop :{}, {} ", bssd, properties);
-//			argMap.entrySet().stream().forEach(s -> logger.info("Effective Arguments Input : {},{}", s.getKey(), s.getValue()));
-//			argumentMap.entrySet().forEach(s ->logger.info("Effective Arguments in DB : {},{}", s.getKey(), s.getValue()));
-//			
-//			jobList.stream().forEach(s -> logger.info("Job List : {}", s));
-//			
-//			rfCurveList = IrCurveHisDao.getIrCurveByCrdGrdCd("000").stream().filter(s -> irSceCurrency.contains(s.getCurCd())).collect(Collectors.toList());
-//			bottomUpList = IrCurveHisDao.getBottomUpIrCurve().stream().filter(s -> irSceCurrency.contains(s.getCurCd())).collect(Collectors.toList());
-//			kicsList     = IrCurveHisDao.getIrCurveByGenMethod("5").stream().filter(s -> irSceCurrency.contains(s.getCurCd())).collect(Collectors.toList());	//5 : KICS
-//			
-//			
-//	//		Hibernate Context flush Size
-//			flushSize 	 = Integer.parseInt(argumentMap.getOrDefault("flushSize", properties.getOrDefault("flushSize", "100000").toString()));
-//			
-//	//		병렬처리 서비스 생성 
-//			int maxThreadNum = Integer.parseInt(argumentMap.getOrDefault("maxThreadNum", properties.getOrDefault("maxThreadNum", "5").toString()));
-//	//		poolSize = Math.min(maxThreadNum, Runtime.getRuntime().availableProcessors()) -1 ;
-//			poolSize = maxThreadNum;
-//	//		poolSize = 1;
-//			logger.info("Number of Thread to Run in case of parallel process : {}" , poolSize);
-//			
-//			exe = Executors.newFixedThreadPool(poolSize, new ThreadFactory() {
-//				@Override
-//				public Thread newThread(Runnable r) {
-//					Thread t = new Thread(r);
-//					t.setDaemon(true);
-//					return t;
-//				}
-//			});
-//			
-//			smithWilsonSetup();
+		
+		for(Map.Entry<String, String> entry : argumentMap.entrySet()) {
+			if(entry.getKey().contains("JOB")) {
+				jobString = entry.getValue();
+			}
+		}
+		if(properties.containsKey("job_batch")) {
+			jobString 			 = properties.get("job_batch").toString();
+		}
+			
+		jobList 	  = Arrays.stream(jobString .split(",")).map(s -> s.trim()).collect(Collectors.toList());
+		irSceCurrency = Arrays.stream(irSceCurrencyString.split(",")).map(s -> s.trim()).collect(Collectors.toSet());
+		
+		logger.info("Prop :{}, {} ", bssd, properties);
+		argMap.entrySet().stream().forEach(s -> logger.info("Effective Arguments Input : {},{}", s.getKey(), s.getValue()));
+		argumentMap.entrySet().forEach(s ->logger.info("Effective Arguments in DB : {},{}", s.getKey(), s.getValue()));
+		
+		jobList.stream().forEach(s -> logger.info("Job List : {}", s));
+		
+//		rfCurveList  = IrCurveHisDao.getIrCurveByCrdGrdCd("000").stream().filter(s -> irSceCurrency.contains(s.getCurCd())).collect(Collectors.toList());
+//		bottomUpList = IrCurveHisDao.getBottomUpIrCurve().stream().filter(s -> irSceCurrency.contains(s.getCurCd())).collect(Collectors.toList());
+//		kicsList     = IrCurveHisDao.getIrCurveByGenMethod("5").stream().filter(s -> irSceCurrency.contains(s.getCurCd())).collect(Collectors.toList());	//5 : KICS
+			
+//		Hibernate Context flush Size
+		flushSize 	 = Integer.parseInt(argumentMap.getOrDefault("flushSize", properties.getOrDefault("flushSize", "100000").toString()));
+		
+//		병렬처리 서비스 생성 
+		int maxThreadNum = Integer.parseInt(argumentMap.getOrDefault("maxThreadNum", properties.getOrDefault("maxThreadNum", "5").toString()));
+		poolSize = maxThreadNum;
+		logger.info("Number of Thread to Run in case of parallel process : {}" , poolSize);
+		
+		exe = Executors.newFixedThreadPool(poolSize, new ThreadFactory() {
+			@Override
+			public Thread newThread(Runnable r) {
+				Thread t = new Thread(r);
+				t.setDaemon(true);
+				return t;
+			}
+		});
+		
+//		smithWilsonSetup();
 	}
 
 }
