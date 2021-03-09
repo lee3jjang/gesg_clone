@@ -92,21 +92,19 @@ public class Main {
 		paramGroup = properties.getOrDefault("paramGroup", "BASE").toString();
 				
 		Map<String, String> argumentMap = ParamUtil.getParamList(paramGroup).stream().collect(Collectors.toMap(s->s.getParamKey(), s->s.getParamValue()));
-//			
-//	//		batchNum, dnsErrorTolerance, dnsVolAdjust, hwErrorTolerance, hw2ErrorTolerance, IrSceCurrency, outputDir 
-//			output 			  			= argumentMap.getOrDefault("outputDir", properties.get("outputDir").toString()) ;
-//			lqFittingModel    			= argumentMap.getOrDefault("lqFittingModel", properties.getOrDefault("lqFittingModel", "POLY_FITTING").toString()) ;
-//	//		lqFittingModel    			= argumentMap.getOrDefault("lqFittingModel", properties.getOrDefault("lqFittingModel", "SW_FITTING").toString()) ;
-//			irSceGenSmithWilsonApply	= argumentMap.getOrDefault("irSceGenSmithWilsonApply", "Y") ;
-//			irSceCurrencyString  		= argumentMap.getOrDefault("IrSceCurrency", properties.getOrDefault("IrSceCurrency", "KRW").toString());
-//			
-//			batchNum 		  = Integer.parseInt(argumentMap.getOrDefault("batchNum", properties.getOrDefault("batchNum", "10").toString()));
-//			dnsErrorTolerance = Double.parseDouble(argumentMap.getOrDefault("dnsErrorTolerance", properties.getOrDefault("dnsErrorTolerance", "0.00001").toString()));
-//			kicsVolAdjust     = Double.parseDouble(argumentMap.getOrDefault("kicsVolAdjust", properties.getOrDefault("kicsVolAdjust", "0.0032").toString()));
-//			hwErrorTolerance  = Double.parseDouble(argumentMap.getOrDefault("hwErrorTolerance", properties.getOrDefault("hwErrorTolerance", "0.0001").toString()));
-//			hw2ErrorTolerance = Double.parseDouble(argumentMap.getOrDefault("hw2ErrorTolerance", properties.getOrDefault("hw2ErrorTolerance", "0.0001").toString()));
-//			
-//			jobString 			 = properties.get("job").toString();
+
+//		output 			  			= argumentMap.getOrDefault("outputDir", properties.get("outputDir").toString());
+		lqFittingModel    			= argumentMap.getOrDefault("lqFittingModel", properties.getOrDefault("lqFittingModel", "POLY_FITTING").toString());
+		irSceGenSmithWilsonApply	= argumentMap.getOrDefault("irSceGenSmithWilsonApply", "Y") ;
+		irSceCurrencyString  		= argumentMap.getOrDefault("IrSceCurrency", properties.getOrDefault("IrSceCurrency", "KRW").toString());
+			
+		batchNum 		  = Integer.parseInt(argumentMap.getOrDefault("batchNum", properties.getOrDefault("batchNum", "10").toString()));
+		dnsErrorTolerance = Double.parseDouble(argumentMap.getOrDefault("dnsErrorTolerance", properties.getOrDefault("dnsErrorTolerance", "0.00001").toString()));
+		kicsVolAdjust     = Double.parseDouble(argumentMap.getOrDefault("kicsVolAdjust", properties.getOrDefault("kicsVolAdjust", "0.0032").toString()));
+		hwErrorTolerance  = Double.parseDouble(argumentMap.getOrDefault("hwErrorTolerance", properties.getOrDefault("hwErrorTolerance", "0.0001").toString()));
+		hw2ErrorTolerance = Double.parseDouble(argumentMap.getOrDefault("hw2ErrorTolerance", properties.getOrDefault("hw2ErrorTolerance", "0.0001").toString()));
+			
+		jobString 		  = properties.get("job").toString();
 //			
 //			for(Map.Entry<String, String> entry : argumentMap.entrySet()) {
 //				if(entry.getKey().contains("JOB")) {
