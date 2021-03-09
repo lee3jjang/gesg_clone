@@ -34,8 +34,8 @@ public class HibernateUtil {
 		Map<String, String> settings = new HashMap<String,String>();
 		settings.put(Environment.DRIVER, prop.getProperty("driver"));
 		settings.put(Environment.URL, prop.getProperty("url"));
-		settings.put(Environment.USER, prop.getProperty("username"));
-		settings.put(Environment.PASS, prop.getProperty("password"));
+//		settings.put(Environment.USER, prop.getProperty("username"));
+//		settings.put(Environment.PASS, prop.getProperty("password"));
 		settings.put(Environment.DIALECT, prop.getProperty("dialect"));
 
 		logger.info("getSesson Factory with Arg");
