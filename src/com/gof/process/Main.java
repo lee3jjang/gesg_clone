@@ -18,6 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.gof.enums.ERunArgument;
+import com.gof.util.HibernateUtil;
 
 //import com.gof.entity.IrCurve;
 //import com.gof.enums.ERunArgument;
@@ -84,11 +85,8 @@ public class Main {
 			logger.warn("Error in Properties Loading : {}", e);
 		}
 			
-//			session = HibernateUtil.getSessionFactory(properties).openSession();
-//	//		Session From DB
-//	//		session = HibernateUtil.getSessionFactory().getCurrentSession();
-//	//		session = HibernateUtil.getSessionFactory().openSession();
-//			logger.info("Session Info : {}", session.getProperties());
+		session = HibernateUtil.getSessionFactory(properties).openSession();
+		logger.info("Session Info : {}", session.getProperties());
 //			
 //			paramGroup = properties.getOrDefault("paramGroup", "BASE").toString();
 //			
