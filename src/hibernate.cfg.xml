@@ -42,7 +42,7 @@
     
     <!-- <mapping class="com.gof.entity.LiqPremium"/> -->
     <!-- <mapping class="com.gof.entity.BizLiqPremiumUd"/> -->
-    <!-- <mapping class="com.gof.entity.SmithWilsonParam"/> -->
+    <mapping class="com.gof.entity.SmithWilsonParam"/>
     <!-- <mapping class="com.gof.entity.BottomupDcnt"/> -->
     
     <!-- <mapping class="com.gof.entity.DcntSce"/> -->
@@ -111,7 +111,7 @@
 	<!-- <mapping class="com.gof.entity.BizSegPrepay"/> -->
 	<!-- <mapping class="com.gof.entity.BizSegPrepayUd"/> -->
 
-	<!-- <mapping class="com.gof.entity.SmithWilsonParamHis"/> -->
+	<mapping class="com.gof.entity.SmithWilsonParamHis"/>
 	<!-- <mapping class="com.gof.entity.BizDiscFwdRateSce"/> -->
 	
 	<!-- <mapping class="com.gof.entity.HisDiscRateStat"/> -->

@@ -2,6 +2,7 @@ package com.gof.process;
 
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -20,6 +21,9 @@ import org.hibernate.Session;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.gof.dao.SmithWilsonDao;
+import com.gof.entity.SmithWilsonParam;
+import com.gof.entity.SmithWilsonParamHis;
 import com.gof.enums.ERunArgument;
 import com.gof.util.HibernateUtil;
 import com.gof.util.ParamUtil;
@@ -148,7 +152,32 @@ public class Main {
 			}
 		});
 		
-//		smithWilsonSetup();
+		smithWilsonSetup();
+	}
+	
+	private static void smithWilsonSetup() {
+		session.beginTransaction();
+//		List<SmithWilsonParamHis> smList = SmithWilsonDao.getParamHisList(bssd);
+//		List<SmithWilsonParam> smRst = new ArrayList<SmithWilsonParam>(); 
+//		SmithWilsonParam temp;
+//		for(SmithWilsonParamHis aa : smList) {
+//			temp = new SmithWilsonParam();
+//			temp.setCurCd(aa.getCurCd());
+//			temp.setIrCurveDv(aa.getIrCurveDv());
+//			temp.setLlp(aa.getLlp());
+//			temp.setUfr(aa.getUfr());
+//			temp.setUfrT(aa.getUfrT());
+//			temp.setLastModifiedBy("ESG");
+//			temp.setLastUpdateDate(LocalDateTime.now());
+//			smRst.add(temp);
+//		}
+//		
+//		logger.info("SmithWilson Parameter Update : {},{}", smList.size(), smRst.size());
+//		for(SmithWilsonParam bb : smRst) {
+//			
+//			session.saveOrUpdate(bb);
+//		}
+		session.getTransaction().commit();
 	}
 
 }
