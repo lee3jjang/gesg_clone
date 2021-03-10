@@ -24,8 +24,8 @@
     <property name="hibernate.physical_naming_strategy">com.gof.util.PhysicalNamingStrategyImpl</property>
     
     
-    <!-- <mapping class="com.gof.entity.IrCurve"/> -->
-    <!-- <mapping class="com.gof.entity.IrCurveHis"/> -->
+    <mapping class="com.gof.entity.IrCurve"/>
+    <mapping class="com.gof.entity.IrCurveHis"/>
     <!-- <mapping class="com.gof.entity.CreditSpread"/> -->
     <!-- <mapping class="com.gof.entity.IrSce"/> -->
     <!-- <mapping class="com.gof.entity.IrShockSce"/> -->
