@@ -174,7 +174,6 @@ public class Main {
 //		
 //		logger.info("SmithWilson Parameter Update : {},{}", smList.size(), smRst.size());
 //		for(SmithWilsonParam bb : smRst) {
-//			
 //			session.saveOrUpdate(bb);
 //		}
 		session.getTransaction().commit();
